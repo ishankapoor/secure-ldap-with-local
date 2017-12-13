@@ -1,0 +1,23 @@
+for holidate in holidates
+ .page-header
+  - var day = new Date(holidate).toUTCString().slice(0, 16)
+  h4 #{day}
+ table.table.table-bordered
+  thead
+   tr
+    th.text-center.col-sm-6(colspan=2) West Coast 
+    th.text-center.col-sm-6(colspan=2) East Coast
+   tr
+    th.text-center.col-sm-3 Product
+    th.text-center.col-sm-3 Max
+    th.text-center.col-sm-3 Product
+    th.text-center.col-sm-3 Max
+  tbody
+   for product in products
+    tr
+     td #{product}
+     td
+      | #{availability[product]["West"][holidate].count}
+     td #{product}
+     td
+      | #{availability[product]["West"][holidate].count}

@@ -1,0 +1,41 @@
+// also the modal itself
+#myModal.modal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+ .modal-dialog
+  .modal-content
+   .modal-header
+    button.close(type='button', data-dismiss='modal', aria-label='Close')
+     span(aria-hidden='true') x
+    h4#myModalLabel.modal-title Confirm your reservation?
+   .modal-body
+    | Are you sure you want to submit these reservations?
+   .modal-footer
+    button.btn.btn-default(type='button', data-dismiss='modal') No, Take Me Back
+    button.btn.btn-primary(type='button', id="submit", onclick="reserve(this.id)") Yes, Go Ahead
+- x = 0;
+for holidate in holidates
+ .page-header
+ - var displayDate = new Date(holidate).toUTCString().slice(0,16)
+ h3= displayDate
+ table.table.table-bordered
+  thead
+   th.text-center.col-sm-6 West Coast
+   th.text-center.col-sm-6 East Coast
+  tbody
+   for product in products
+    - var productLower = product.toLowerCase()
+    tr
+     if availability[product]["West"][holidate].count != 0
+      td
+       button(type="button", class="btn btn-default btn-block", value= product , id=productLower + "-west-" + holidate, onclick="selectProduct(this.id)") #{product}
+     else
+      td.text-center(style="vertical-align:middle;") #{product} (Full)
+     if availability[product]["East"][holidate].count != 0
+      td
+       button(type="button", class="btn btn-default btn-block", value=product, id=productLower + "-east-" + holidate, onclick="selectProduct(this.id)") #{product}
+     else
+      td.text-center(style="vertical-align:middle;") #{product} (Full)
+ .row
+  .col-md-6.col-md-offset-3
+   button(type="button", class="btn btn-warning btn-block btn-lg", id='reset-' + holidate, onclick="reset(this.id)") Reset Selection
+button#myModalTrigger(type='button',class="btn btn-info btn-block btn-lg" ,data-toggle='modal', data-target='#myModal',style="margin-top: 15px;") Submit Reservations
+.page-header

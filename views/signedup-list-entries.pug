@@ -1,0 +1,22 @@
+for entry in entries
+ .page-header
+ - var day = new Date(entry.holiday).toUTCString().slice(0,16)
+ h3 #{day}
+ table.table.table-bordered
+  if entry.coast == ""
+   thead
+    th.text-center.col-sm-6 West Coast Hours
+    th.text-center.col-sm-6 East Coast Hours
+   tbody
+    tr
+     td
+      button(type="button", class="btn btn-success btn-block", disabled="disabled") #{entry.product}
+     td
+      button(type="button", class="btn btn-success btn-block", disabled="disabled") #{entry.product}
+  else
+   thead
+    th.text-center #{entry.coast} Coast Hours
+   tbody
+    tr
+     td
+      button(type="button", class="btn btn-success btn-block", disabled="disabled") #{entry.product}

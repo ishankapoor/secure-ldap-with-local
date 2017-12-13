@@ -1,0 +1,28 @@
+-var currentUTCTime     = new Date()
+-var currentEasternTime = new Date(currentUTCTime.toLocaleString('en-US', { timeZone: 'America/New_York' }))
+-var startEasternTime   = new Date(startUTCTime.toLocaleString('en-US', { timeZone: 'America/New_York' }))
+if currentEasternTime < startEasternTime
+ .jumbotron
+  p.lead.text-center Time at Holiday Signup server when this page was requested
+  h1.text-center
+   span.label.label-warning #{currentEasternTime.toString().slice(0,24)}
+  h1.text-center
+   span.label.label-warning Eastern Time
+  p.lead.text-center ...
+  p.lead.text-center Signups begin
+   h1.text-center
+    span.label.label-danger #{startEasternTime.toString().slice(0,24)}
+   h1.text-center
+    span.label.label-danger Eastern Time
+  p.lead.text-center ...
+else
+ .jumbotron
+  h1.text-center
+   span.label.label-warning 
+    a(href="/login") Login
+  p.lead.text-center ...
+  p.lead.text-center Signups have begun! Time of kickoff was
+  h1.text-center
+   span.label.label-warning #{startEasternTime.toString().slice(0,24)}
+   h1.text-center
+    span.label.label-warning Eastern Time

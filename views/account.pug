@@ -1,0 +1,19 @@
+extends layout
+block content
+  if user
+    if user.cn
+     p Welcome #{user.cn} from #{user.department} to #{title}
+    else
+     p Welcome #{user.username} to #{title}
+    .page-header
+     h4 User Details
+    table.table
+     thead
+      tr.active
+       th name
+       th value
+     tbody
+      each value, key in user
+       tr
+        td #{key}
+        td #{value}

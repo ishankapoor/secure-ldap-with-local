@@ -1,0 +1,9 @@
+extends layout
+block content
+ -var currentUTCTime     = new Date()
+ -var currentEasternTime = new Date(currentUTCTime.toLocaleString('en-US', { timeZone: 'America/New_York' }))
+ -var startEasternTime   = new Date(startUTCTime.toLocaleString('en-US', { timeZone: 'America/New_York' }))
+ if currentUTCTime < startUTCTime
+  include ticker
+ else
+  include signup-list-with-modal

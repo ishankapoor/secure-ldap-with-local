@@ -1,0 +1,15 @@
+if messages.error
+ .alert.alert-danger
+  div
+   span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+   |&nbsp;#{messages.error}
+if messages.info
+ .alert.alert-info
+  div
+   span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+   |&nbsp;#{messages.info}
+if messages.success
+ .alert.alert-success
+  div
+   span.glyphicon.glyphicon-ok-circle(aria-hidden='true')
+   |&nbsp;#{messages.success}

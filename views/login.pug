@@ -1,0 +1,18 @@
+extends layout
+block content
+  form(method='POST')
+    legend Login
+    .form-group
+      label(for='username') Username
+      .input-group
+       input.form-control(type='text',autofocus, name='username', aria-describedby='helpBlock')
+       span.input-group-addon @riverbed.com
+      span#helpBlock.help-block eg. jkennelly 
+    .form-group
+      label(for='password') Password
+      .input-group
+       input.form-control(type='password', name='password')
+       span.input-group-addon SSO Password
+    button.btn.btn-primary(type='submit') Login
+  .page-header
+   include ticker

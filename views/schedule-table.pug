@@ -1,0 +1,55 @@
+if entries.length > 0
+ for holiday in holidays
+  .page-header
+   - var day = new Date(holiday).toUTCString().slice(0,16)
+   h4 #{day}
+  table.table.table-bordered
+    thead
+     tr
+      th.text-center.col-sm-6(colspan=2) West Coast 
+      th.text-center.col-sm-6(colspan=2) East Coast
+     tr
+      th.text-center.col-sm-3 Product
+      th.text-center.col-sm-3 Engineer
+      th.text-center.col-sm-3 Product
+      th.text-center.col-sm-3 Engineer
+    tbody
+     for product in products
+      - var westlist = []
+      - var eastlist = []
+      for westentry in entries
+       if westentry.product == product && westentry.holiday == holiday && (westentry.coast   == "West" || westentry.coast == "")
+        - westlist.push(westentry.username)
+      for eastentry in entries
+       if eastentry.product == product && eastentry.holiday == holiday && (eastentry.coast   == "East" || eastentry.coast == "")
+        - eastlist.push(eastentry.username)
+         
+      - for (var i=0,j=0; i < availability[product]["West"][holiday].count ;i++,j++){
+      -  if (i < westlist.length && j < eastlist.length){
+          tr
+           td (#{product})
+           td #{westlist[i]}
+           td (#{product})
+           td #{eastlist[j]}
+      -  } else if (i < westlist.length){
+          tr
+           td (#{product})
+           td #{westlist[i]}
+           td (#{product})
+           td.danger -
+      -  } else if (j < eastlist.length){
+          tr
+           td (#{product})
+           td.danger -
+           td (#{product})
+           td #{eastlist[j]}
+      -  } else if (i >= eastlist.length && j >= eastlist.length){
+          tr
+           td (#{product})
+           td.danger -
+           td (#{product})
+           td.danger -
+      -  }
+      - } 
+else
+ .page-header
